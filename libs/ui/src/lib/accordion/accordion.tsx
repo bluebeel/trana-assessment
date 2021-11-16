@@ -1,6 +1,5 @@
 import React from 'react';
 import { styled, keyframes, CSS } from '../../../stitches.config';
-import { mauve } from '@radix-ui/colors';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
@@ -39,13 +38,30 @@ const StyledItem = styled(AccordionPrimitive.Item, {
   '&:focus-within': {
     position: 'relative',
     zIndex: 1,
-    boxShadow: `0 0 0 2px ${mauve.mauve12}`,
+    outlineOffset: '1px'
   },
 });
 
 const StyledHeader = styled(AccordionPrimitive.Header, {
   all: 'unset',
   display: 'flex',
+  py: '$1',
+
+  variants: {
+    size: {
+      small: {
+        py: '$1',
+      },
+      big: {
+        py: 6,
+        fontSize: 14,
+        letterSpacing: '0%'
+      }
+    }
+  },
+  defaultVariants: {
+    size: 'small'
+  }
 });
 
 const StyledTrigger = styled(AccordionPrimitive.Trigger, {
@@ -54,14 +70,14 @@ const StyledTrigger = styled(AccordionPrimitive.Trigger, {
   fontFamily: 'inherit',
   backgroundColor: 'transparent',
   width: '100%',
-  py: '$1',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   transition: 'color 300ms cubic-bezier(0.4, 0, 1, 1)',
-  '&[data-state="closed"]': { backgroundColor: 'white' },
-  '&[data-state="open"]': { backgroundColor: 'white', color: '$grey800' },
-  '&:hover': { color: '$grey800' },
+  '&[data-state="closed"]': { backgroundColor: 'white', color: '$grey400' },
+  '&[data-state="open"]': { backgroundColor: 'white', color: '$grey900' },
+  '&:hover': { color: '$grey900' },
+  '&:hover svg': { color: '$grey900' },
 });
 
 const StyledTriggerLabel = styled('span', {
@@ -90,7 +106,7 @@ const StyledChevron = styled(ChevronDownIcon, {
   height: '$3',
   color: '$grey500',
   transition: 'transform 300ms cubic-bezier(0.4, 0, 1, 1)',
-  '[data-state=open] &': { transform: 'rotate(180deg)', color: '$grey800' },
+  '[data-state=open] &': { transform: 'rotate(-90deg)', color: '$grey800' },
 });
 
 // Exports
@@ -141,6 +157,10 @@ export type AccordionElement = {
    * A unique value identifying the element from among its siblings.
    */
   value: string;
+  /**
+   * When true, prevents the user from interacting with the item.
+   */
+  disabled?: boolean
 };
 
 export interface AccordionProps {
@@ -160,10 +180,9 @@ export const Accordion = ({ items, defaultValue }: AccordionProps) => (
     type="single"
     defaultValue={defaultValue}
     collapsible
-    css={{ width: '279px' }}
   >
     {items.map((item: AccordionElement) => (
-      <AccordionItem value={item.value} key={item.value}>
+      <AccordionItem value={item.value} key={item.value} disabled={item.disabled}>
         <AccordionTrigger>{item.title}</AccordionTrigger>
         <AccordionContent>{item.content}</AccordionContent>
       </AccordionItem>

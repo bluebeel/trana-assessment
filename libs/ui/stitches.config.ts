@@ -15,10 +15,13 @@ export const {
   theme: {
     colors: {
       blue: '#3869EF',
+      blue800: '#2C57CE',
+      grey100: '#E7E8EE',
       grey200: '#DCDDE5',
       grey400: '#9D9FA9',
       grey500: '#737582',
       grey800: '#3E4051',
+      grey900: '#212331',
     },
     fonts: {
       sans: 'Inter, -apple-system, system-ui, sans-serif',
@@ -225,3 +228,16 @@ export const {
 });
 
 export type CSS = Stitches.CSS<typeof config>;
+
+export const darkTheme = createTheme('dark-theme', {
+  colors: {
+    blue: '#3869EF',
+    blue800: '#2C57CE',
+    grey100: '#E7E8EE',
+    grey200: '#333333',
+    grey400: '#777777',
+    grey500: '#A4A4A4',
+    grey800: '#DDDDDD',
+    grey900: '#212331',
+  },
+});
