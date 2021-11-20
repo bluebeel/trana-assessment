@@ -1,7 +1,8 @@
-import { Accordion, Box } from '@trana/ui';
+import { Box } from '../box';
+import { Accordion } from '../accordion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { styled } from '../../../stitches.config';
+import { styled } from '../../stitches.config';
 import { AccordionElement } from '../accordion/accordion';
 import ChapterDocumentItem from './chapter-document';
 import { CourseChapter, CourseTreeProps } from './types';
@@ -43,12 +44,12 @@ export function CourseTree({ courses }: CourseTreeProps) {
       content: (
         <CourseChapterContainer>
           {chapter.documents.map((document) => (
-            <Link href={document.slug} key={document.id} passHref>
+            <Link href={document.slug} passHref key={document.id}>
               <ChapterDocumentItem
                 title={document.title}
                 type={document.type}
                 completed={document.completed}
-                active={router.pathname === document.slug}
+                active={router.asPath === document.slug}
               />
             </Link>
           ))}

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import { Box } from '../box/box';
-import { darkTheme } from '../../../stitches.config';
+import { darkTheme } from '../../stitches.config';
 import ChapterDocumentItem from './chapter-document';
 import { CourseTree } from './course-tree';
 
