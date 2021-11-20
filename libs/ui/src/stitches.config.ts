@@ -1,5 +1,8 @@
 import { createStitches } from '@stitches/react';
 import type * as Stitches from '@stitches/react';
+import {
+  slate,
+} from '@radix-ui/colors';
 export type { VariantProps } from '@stitches/react';
 
 export const {
@@ -22,6 +25,17 @@ export const {
       grey500: '#737582',
       grey800: '#3E4051',
       grey900: '#212331',
+      ...slate,
+
+      // Semantic colors
+      hiContrast: '$slate12',
+      // loContrast: '$slate1',
+      loContrast: 'white',
+      canvas: 'hsl(0 0% 93%)',
+      panel: 'white',
+      transparentPanel: 'hsl(0 0% 0% / 97%)',
+      shadowLight: 'hsl(206 22% 7% / 35%)',
+      shadowDark: 'hsl(206 22% 7% / 20%)',
     },
     fonts: {
       sans: 'Inter, -apple-system, system-ui, sans-serif',
