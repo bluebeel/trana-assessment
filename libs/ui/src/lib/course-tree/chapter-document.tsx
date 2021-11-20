@@ -1,6 +1,7 @@
 import { Box } from '../box';
-import { styled } from '../../../stitches.config';
+import { styled } from '../../stitches.config';
 import { DocumentIcon, PlayerIcon, ClipboardIcon, CheckIcon } from './icons';
+import React, { forwardRef } from 'react';
 
 const StyledCourseChapterDocumentLabel = styled(Box, {
   overflow: 'hidden',
@@ -138,29 +139,46 @@ const CourseTypeIcons = {
 };
 
 export interface ChapterDocumentItemProps {
-  type: 'text' | 'quiz' | 'media' | null;
+  type?: 'text' | 'quiz' | 'media' | null;
   active?: boolean;
   size?: 'small' | 'big';
   title: string | React.ReactNode;
   completed?: boolean;
+  onClick?: () => void;
+  href?: string;
 }
 
-export const ChapterDocumentItem = ({
-  title,
-  type,
-  active = false,
-  size = 'small',
-  completed = false,
-}: ChapterDocumentItemProps) => {
-  return (
-    <StyledCourseChapterDocument active={active} icon={!!type} size={size}>
-      {type ? CourseTypeIcons[type] : null}
-      <StyledCourseChapterDocumentLabel>
-        {title}
-      </StyledCourseChapterDocumentLabel>
-      {completed ? <StyledCheckIcon aria-hidden /> : null}
-    </StyledCourseChapterDocument>
-  );
-};
+export const ChapterDocumentItem = forwardRef(
+  (
+    {
+      title,
+      type,
+      active = false,
+      size = 'small',
+      completed = false,
+      onClick,
+      href,
+    }: ChapterDocumentItemProps,
+    ref: React.Ref<HTMLDivElement>
+  ) => {
+    const linkProps = href ? { as: 'a' } : {};
+    return (
+      <StyledCourseChapterDocument
+        ref={ref}
+        active={active}
+        icon={!!type}
+        size={size}
+        {...linkProps}
+        onClick={onClick}
+      >
+        {type ? CourseTypeIcons[type] : null}
+        <StyledCourseChapterDocumentLabel>
+          {title}
+        </StyledCourseChapterDocumentLabel>
+        {completed ? <StyledCheckIcon aria-hidden /> : null}
+      </StyledCourseChapterDocument>
+    );
+  }
+);
 
 export default ChapterDocumentItem;
