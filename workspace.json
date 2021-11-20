@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "trana": "apps/trana",
+    "trana-e2e": "apps/trana-e2e",
     "ui": "libs/ui"
   }
 }

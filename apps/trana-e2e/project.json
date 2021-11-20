@@ -1,0 +1,28 @@
+{
+  "root": "apps/trana-e2e",
+  "sourceRoot": "apps/trana-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/trana-e2e/cypress.json",
+        "devServerTarget": "trana:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "trana:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/trana-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["trana"]
+}
