@@ -1,8 +1,9 @@
-import { Box, CourseTree } from '@trana/ui';
+import { Box } from '../box';
+import { CourseTree } from '../course-tree/course-tree';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Course } from '../course-tree/types';
-import { styled, keyframes, CSS } from '../../../stitches.config';
+import { styled } from '../../stitches.config';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import Link from 'next/link';
 import ChapterDocumentItem from '../course-tree/chapter-document';
@@ -37,7 +38,7 @@ export const Sidebar = ({ menus, courses }: SidebarProps) => {
   const router = useRouter();
 
   return (
-    <Box css={{ width: '279px' }}>
+    <Box>
       <MenuContainer>
         {menus.map((document, index) => (
           <Link href={document.slug} key={index} passHref>
@@ -45,7 +46,7 @@ export const Sidebar = ({ menus, courses }: SidebarProps) => {
               title={document.title}
               type={document.type}
               completed={false}
-              active={router.pathname === document.slug}
+              active={router.asPath === document.slug}
             />
           </Link>
         ))}
