@@ -8,6 +8,8 @@ This project was generated using [Nx](https://nx.dev). Nx is a set of extensible
 
 https://teamtrana.notion.site/Frontend-coding-task-5f200ad0aae24aa0828183ab1563e6e1
 
+Live demo: https://trana-assessment.vercel.app/
+
 ### Technologies to use
 
 - Typescript
